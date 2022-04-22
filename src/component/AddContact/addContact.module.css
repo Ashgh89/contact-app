@@ -1,0 +1,33 @@
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.formControl {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.formControl input {
+  outline: none;
+  border-radius: 5px;
+  border: 2px solid #ccc;
+  padding: 3px 5px;
+}
+
+.btn_style {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  margin: 10px 0;
+  padding: 5px 10px;
+  color: #fff;
+  background-color: #6728d4;
+  border-radius: 5px;
+}
+
+.formControl input:focus {
+  border: 2px solid #6728d4;
+}

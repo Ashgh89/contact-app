@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import styles from "./addContact.module.css";
 const AddContact = ({ addContactHandler }) => {
   const [contact, setContact] = useState({ name: "", email: "" });
   const changeHandler = (e) => {
@@ -8,7 +8,6 @@ const AddContact = ({ addContactHandler }) => {
     // just one changeHandler for multiple inputs
     setContact({ ...contact, [e.target.name]: e.target.value });
   };
-
   const submitForm = (e) => {
     if (!contact.name || !contact.email) {
       alert("Please Enter name or email");
@@ -20,7 +19,7 @@ const AddContact = ({ addContactHandler }) => {
   };
   return (
     <form onSubmit={submitForm}>
-      <div className="formControl">
+      <div className={styles.formControl}>
         <label>Name</label>
         <input
           type="text"
@@ -31,7 +30,7 @@ const AddContact = ({ addContactHandler }) => {
           onChange={changeHandler}
         />
       </div>
-      <div className="formControl">
+      <div className={styles.formControl}>
         <label>Email</label>
         <input
           type="text"
@@ -40,7 +39,9 @@ const AddContact = ({ addContactHandler }) => {
           onChange={changeHandler}
         />
       </div>
-      <button type="submit">Add Contact</button>
+      <button className={styles.btn_style} type="submit">
+        Add Contact
+      </button>
     </form>
   );
 };
