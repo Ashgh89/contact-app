@@ -10,6 +10,10 @@ const AddContact = ({ addContactHandler }) => {
   };
 
   const submitForm = (e) => {
+    if (!contact.name || !contact.email) {
+      alert("Please Enter name or email");
+      return;
+    }
     e.preventDefault();
     addContactHandler(contact);
     setContact({ name: "", email: "" });
