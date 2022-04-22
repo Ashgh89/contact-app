@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const AddContact = () => {
+const AddContact = ({ addContactHandler }) => {
   const [contact, setContact] = useState({ name: "", email: "" });
   const changeHandler = (e) => {
     // When our state is an object, we make a copy (...contact)
@@ -9,12 +9,13 @@ const AddContact = () => {
     setContact({ ...contact, [e.target.name]: e.target.value });
   };
 
-  const addContactHandler = (e) => {
+  const submitForm = (e) => {
     e.preventDefault();
-    console.log("clicked");
+    addContactHandler(contact);
+    setContact({ name: "", email: "" });
   };
   return (
-    <form onSubmit={addContactHandler}>
+    <form onSubmit={submitForm}>
       <div className="formControl">
         <label>Name</label>
         <input
@@ -35,7 +36,7 @@ const AddContact = () => {
           onChange={changeHandler}
         />
       </div>
-      <button>Add Contact</button>
+      <button type="submit">Add Contact</button>
     </form>
   );
 };
