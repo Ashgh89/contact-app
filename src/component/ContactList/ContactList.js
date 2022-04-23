@@ -1,4 +1,5 @@
 import styles from "./contactList.module.css";
+import userImage from "../../assets/images/img-user.png";
 
 const ContactList = ({ contacts, onDelete }) => {
   return (
@@ -7,6 +8,7 @@ const ContactList = ({ contacts, onDelete }) => {
         const { name, email, id } = contact;
         return (
           <div key={id} className={styles.item}>
+            <img src={userImage} alt="user" />
             <div>
               <p>name: {name}</p>
               <p>email: {email}</p>
