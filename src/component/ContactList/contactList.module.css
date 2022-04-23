@@ -6,12 +6,26 @@
 
 .item {
   background-color: #fff;
-  width: 70%;
+  width: 50%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   border: 2px dotted rgb(49, 49, 179);
-  padding: 20px 10px;
+  padding: 20px;
   margin-top: 2rem;
+  border-radius: 5px;
+}
+
+.item p {
+  text-align: left;
+}
+
+.item button {
+  outline: none;
+  cursor: pointer;
+  border: 1px solid #dc2626;
+  color: #dc2626;
+  background-color: #fff;
+  padding: 5px 10px;
   border-radius: 5px;
 }
