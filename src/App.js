@@ -36,7 +36,6 @@ function App() {
     const savedContacts = JSON.parse(localStorage.getItem("contacts"));
 
     if (savedContacts) setContacts(savedContacts);
-    console.log("1. useEffect");
   }, []);
 
   // localStorage.setItem(key (must be string),value (string));
@@ -47,18 +46,12 @@ function App() {
     // localStorage.setItem("contacts", JSON.stringify(contacts));
     if (contacts.length !== 0) {
       localStorage.setItem("contacts", JSON.stringify(contacts));
-      console.log("2. useEffect!");
     }
   }, [contacts]);
 
-  const myConsole = (a, b) => {
-    console.log("10", contacts);
-    return a + b;
-  };
   return (
     <main className="App">
       <h1>Contact App </h1>
-      <p>{myConsole(5, 5)}</p>
 
       <AddContact addContactHandler={addContactHandler} />
       <ContactList contacts={contacts} onDelete={deleteContactHandler} />
