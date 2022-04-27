@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import AddContact from "./component/AddContact/AddContact";
 import ContactList from "./component/ContactList/ContactList";
+// 1. First -> npm i react-router-dom
+// 2. in index.js -> import { BrowserRouter } from "react-router-dom"; and wrap it.
 
 function App() {
   const [contacts, setContacts] = useState([]);
