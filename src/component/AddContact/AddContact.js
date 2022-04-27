@@ -1,7 +1,9 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./addContact.module.css";
 const AddContact = ({ addContactHandler }) => {
   const [contact, setContact] = useState({ name: "", email: "" });
+  const navigate = useNavigate();
   const changeHandler = (e) => {
     // When our state is an object, we make a copy (...contact)
     // { ...contact, [e.target.name]: e.target.value } -> With this you can use
@@ -16,6 +18,9 @@ const AddContact = ({ addContactHandler }) => {
     e.preventDefault();
     addContactHandler(contact);
     setContact({ name: "", email: "" });
+
+    // push to homepage
+    navigate("/");
   };
   return (
     <form onSubmit={submitForm}>

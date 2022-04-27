@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import AddContact from "./component/AddContact/AddContact";
 import ContactList from "./component/ContactList/ContactList";
@@ -54,9 +55,21 @@ function App() {
   return (
     <main className="App">
       <h1>Contact App </h1>
+      <Routes>
+        <Route
+          path="/add"
+          element={<AddContact addContactHandler={addContactHandler} />}
+        />
+        <Route
+          path="/"
+          element={
+            <ContactList contacts={contacts} onDelete={deleteContactHandler} />
+          }
+        />
+      </Routes>
 
-      <AddContact addContactHandler={addContactHandler} />
-      <ContactList contacts={contacts} onDelete={deleteContactHandler} />
+      {/* <AddContact addContactHandler={addContactHandler} /> */}
+      {/* <ContactList contacts={contacts} onDelete={deleteContactHandler} /> */}
     </main>
   );
 }
