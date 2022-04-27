@@ -1,9 +1,16 @@
 import styles from "./contactList.module.css";
 import userImage from "../../assets/images/img-user.png";
+import { Link } from "react-router-dom";
 
 const ContactList = ({ contacts, onDelete }) => {
   return (
     <section className={styles.contactList}>
+      <div>
+        <h1>Contacts</h1>
+        <Link to="/add">
+          <button>Add</button>
+        </Link>
+      </div>
       {contacts.map((contact) => {
         const { name, email, id } = contact;
         return (

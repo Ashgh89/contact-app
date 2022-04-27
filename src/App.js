@@ -4,8 +4,8 @@ import "./App.css";
 import AddContact from "./component/AddContact/AddContact";
 import ContactList from "./component/ContactList/ContactList";
 // 1. First -> npm i react-router-dom
-// 2. in index.js -> import { BrowserRouter } from "react-router-dom"; and wrap it.
-
+// 2. in index.js -> import { BrowserRouter } from "react-router-dom";
+//3. and wrap it.
 function App() {
   const [contacts, setContacts] = useState([]);
 
@@ -24,13 +24,11 @@ function App() {
     // };
     // setContacts([...contacts, newAdded]);
   };
-
   const deleteContactHandler = (id) => {
     console.log("clicked", id);
     const filteredContact = contacts.filter((c) => c.id !== id);
     setContacts(filteredContact);
   };
-
   //localStorage
   // CDM -> get data
   // contacts -> save
@@ -40,18 +38,15 @@ function App() {
 
     if (savedContacts) setContacts(savedContacts);
   }, []);
-
   // localStorage.setItem(key (must be string),value (string));
   //Convert a JavaScript object into a string with JSON.stringify().
   //When sending data to a web server, the data has to be a string.
   useEffect(() => {
     // this line of code doesn't work, i dunno why
-    // localStorage.setItem("contacts", JSON.stringify(contacts));
-    if (contacts.length !== 0) {
-      localStorage.setItem("contacts", JSON.stringify(contacts));
-    }
-  }, [contacts]);
+    localStorage.setItem("contacts", JSON.stringify(contacts));
 
+    // localStorage.setItem("contacts", JSON.stringify(contacts));
+  }, [contacts]);
   return (
     <main className="App">
       <h1>Contact App </h1>
