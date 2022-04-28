@@ -1,9 +1,3 @@
 {
-  "contacts": [
-    {
-      "id": 1,
-      "name": "Ash",
-      "email": "ghaneiash@gmail.com"
-    }
-  ]
+  "contacts": []
 }

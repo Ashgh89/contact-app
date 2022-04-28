@@ -1,10 +1,13 @@
-import axios from "axios";
+// import axios from "axios";
 import { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import AddContact from "./component/AddContact/AddContact";
 import ContactDetail from "./component/ContactDetail/ContactDetail";
 import ContactList from "./component/ContactList/ContactList";
+import deleteOneContact from "./services/deleteContactService";
+import getContacts from "./services/getContactsService";
+
 // 1. First -> npm i react-router-dom
 // 2. in index.js -> import { BrowserRouter } from "react-router-dom";
 //3. and wrap it.
@@ -26,10 +29,13 @@ function App() {
     // };
     // setContacts([...contacts, newAdded]);
   };
-  const deleteContactHandler = (id) => {
-    console.log("clicked", id);
-    const filteredContact = contacts.filter((c) => c.id !== id);
-    setContacts(filteredContact);
+  const deleteContactHandler = async (id) => {
+    try {
+      const filteredContact = contacts.filter((c) => c.id !== id);
+      setContacts(filteredContact);
+      await deleteOneContact(id);
+    } catch (error) {}
+    // console.log("clicked", id);
   };
   //localStorage
   // CDM -> get data
@@ -38,19 +44,18 @@ function App() {
     //JSON parsing is the process of converting a JSON object in text format to a Javascript object
     // const savedContacts = JSON.parse(localStorage.getItem("contacts"));
     // if (savedContacts) setContacts(savedContacts);
-    const getContacts = async () => {
-      const { data } = await axios.get("http://localhost:3001/contacts");
+    const fetchContact = async () => {
+      const { data } = await getContacts();
       setContacts(data);
     };
-    getContacts();
+    try {
+      fetchContact();
+    } catch (error) {}
   }, []);
   // localStorage.setItem(key (must be string),value (string));
   //Convert a JavaScript object into a string with JSON.stringify().
   //When sending data to a web server, the data has to be a string.
   useEffect(() => {
-    // this line of code doesn't work, i dunno why
-    localStorage.setItem("contacts", JSON.stringify(contacts));
-
     // localStorage.setItem("contacts", JSON.stringify(contacts));
   }, [contacts]);
   return (

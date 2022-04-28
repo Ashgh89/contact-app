@@ -4,12 +4,12 @@
   align-items: center;
 }
 .contactList a {
-  min-width: 30rem;
+  min-width: 3rem;
 }
 
 .item {
   background-color: #fff;
-  width: 50%;
+  width: 70%;
   display: flex;
   justify-content: space-between;
   align-items: center;
