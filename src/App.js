@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
@@ -35,9 +36,13 @@ function App() {
   // contacts -> save
   useEffect(() => {
     //JSON parsing is the process of converting a JSON object in text format to a Javascript object
-    const savedContacts = JSON.parse(localStorage.getItem("contacts"));
-
-    if (savedContacts) setContacts(savedContacts);
+    // const savedContacts = JSON.parse(localStorage.getItem("contacts"));
+    // if (savedContacts) setContacts(savedContacts);
+    const getContacts = async () => {
+      const { data } = await axios.get("http://localhost:3001/contacts");
+      setContacts(data);
+    };
+    getContacts();
   }, []);
   // localStorage.setItem(key (must be string),value (string));
   //Convert a JavaScript object into a string with JSON.stringify().
@@ -72,3 +77,8 @@ function App() {
 }
 
 export default App;
+
+// In this section we want to use JSON server in localhost 3001, make a database
+// and this data that so far we have, we want to get them from that JSON server
+// We lernt how to use this JSON server in the last sections, but now we want to
+// use it in another way.

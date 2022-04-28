@@ -3,6 +3,9 @@
   flex-direction: column;
   align-items: center;
 }
+.contactList a {
+  min-width: 30rem;
+}
 
 .item {
   background-color: #fff;
