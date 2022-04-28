@@ -7,7 +7,7 @@ const Contact = ({ contact, onDelete }) => {
   return (
     <div className={styles.item}>
       <img src={userImage} alt="user" />
-      <Link to={`user/${id}`}>
+      <Link to={`user/${id}`} state={{ data: contact }}>
         <div>
           <p>name: {name}</p>
           <p>email: {email}</p>
@@ -18,3 +18,4 @@ const Contact = ({ contact, onDelete }) => {
   );
 };
 export default Contact;
+// state -> if we want tp pass data from a router to another router, we use state
