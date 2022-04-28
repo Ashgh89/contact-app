@@ -5,6 +5,7 @@ import "./App.css";
 import AddContact from "./component/AddContact/AddContact";
 import ContactDetail from "./component/ContactDetail/ContactDetail";
 import ContactList from "./component/ContactList/ContactList";
+import addOneContact from "./services/addContactService";
 import deleteOneContact from "./services/deleteContactService";
 import getContacts from "./services/getContactsService";
 
@@ -14,13 +15,15 @@ import getContacts from "./services/getContactsService";
 function App() {
   const [contacts, setContacts] = useState([]);
 
-  const addContactHandler = (contact) => {
+  const addContactHandler = async (contact) => {
+    try {
+      const { data } = await addOneContact(contact);
+      setContacts([...contacts, data]); // video 150
+    } catch (error) {
+      console.log("that's error");
+    }
     // console.log(contact); // So it works, now let's do it
     // ceil make the number rond
-    setContacts([
-      ...contacts,
-      { id: Math.ceil(Math.random() * 100), ...contact },
-    ]);
     // ---OR--- I prefer up there
     // const newAdded = {
     //   id: Math.ceil(Math.random() * 100),
@@ -31,10 +34,12 @@ function App() {
   };
   const deleteContactHandler = async (id) => {
     try {
+      await deleteOneContact(id);
       const filteredContact = contacts.filter((c) => c.id !== id);
       setContacts(filteredContact);
-      await deleteOneContact(id);
-    } catch (error) {}
+    } catch (error) {
+      console.log("error");
+    }
     // console.log("clicked", id);
   };
   //localStorage
