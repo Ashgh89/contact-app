@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import getOneContact from "../../services/getOneContact";
 import styles from "../AddContact/addContact.module.css";
-const EditContact = ({ addContactHandler }) => {
+const EditContact = ({ editContactHandler }) => {
   const [contact, setContact] = useState({ name: "", email: "" });
   const navigate = useNavigate();
   const { id } = useParams();
@@ -16,7 +16,8 @@ const EditContact = ({ addContactHandler }) => {
       return;
     }
     e.preventDefault();
-    addContactHandler(contact);
+    // id => params
+    editContactHandler(contact, id);
     setContact({ name: "", email: "" });
 
     // push to homepage
@@ -24,13 +25,17 @@ const EditContact = ({ addContactHandler }) => {
   };
 
   useEffect(() => {
-    const localFetch = async () => {
-      try {
-        const { data } = await getOneContact(id);
-        setContact({ name: data.name, email: data.email });
-      } catch (error) {}
-    };
-    localFetch();
+    // const localFetch = async () => {
+    //   try {
+    //     const { data } = await getOneContact(id);
+    //     setContact({ name: data.name, email: data.email });
+    //   } catch (error) {}
+    // };
+    // localFetch();
+    //---ODER-----
+    getOneContact(id)
+      .then((res) => setContact({ name: res.data.name, email: res.data.email }))
+      .catch((err) => console.log(err));
   }, []);
   return (
     <form onSubmit={submitForm}>
@@ -53,7 +58,7 @@ const EditContact = ({ addContactHandler }) => {
         />
       </div>
       <button className={styles.btn_style} type="submit">
-        Add Contact
+        Edit Contact
       </button>
     </form>
   );

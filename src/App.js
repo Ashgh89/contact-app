@@ -9,6 +9,7 @@ import EditContact from "./component/EditContact/EditContact";
 import addOneContact from "./services/addContactService";
 import deleteOneContact from "./services/deleteContactService";
 import getContacts from "./services/getContactsService";
+import updateContact from "./services/updateContact";
 
 // 1. First -> npm i react-router-dom
 // 2. in index.js -> import { BrowserRouter } from "react-router-dom";
@@ -32,6 +33,16 @@ function App() {
     //   email: contact.email,
     // };
     // setContacts([...contacts, newAdded]);
+  };
+
+  const editContactHandler = async (contact, id) => {
+    try {
+      // put id and data to backend => update
+      await updateContact(id, contact);
+      // get id and data from backend
+      const { data } = await getContacts();
+      setContacts(data);
+    } catch (error) {}
   };
   const deleteContactHandler = async (id) => {
     try {
@@ -68,7 +79,10 @@ function App() {
     <main className="App">
       <h1>Contact App </h1>
       <Routes>
-        <Route path="/edit/:id" element={<EditContact />} />
+        <Route
+          path="/edit/:id"
+          element={<EditContact editContactHandler={editContactHandler} />}
+        />
 
         <Route path="/user/:id" element={<ContactDetail />} />
         <Route
