@@ -4,7 +4,8 @@
   align-items: center;
 }
 .contactList a {
-  min-width: 3rem;
+  /* max-width: 275px; */
+  width: 50%;
 }
 
 .item {
@@ -38,4 +39,20 @@
   /* height:60px; */
   width: calc(3.5em + 1vw);
   height: calc(3.5em + 1vh);
+}
+
+.item .edit_Btn {
+  margin-right: 1rem;
+  border: 2px solid #6d28d9;
+  color: #6d28d9;
+}
+
+.add_btn {
+  width: calc(6.5em + 1vw);
+  height: calc(1em + 1vw);
+
+  background-color: #6d28d9;
+  border: 3px solid rgb(9, 105, 13);
+  border-radius: 10px;
+  color: #fff;
 }

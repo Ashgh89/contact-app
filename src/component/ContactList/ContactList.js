@@ -9,7 +9,7 @@ const ContactList = ({ contacts, onDelete }) => {
       <div>
         <h1>Contacts</h1>
         <Link to="/add">
-          <button>Add</button>
+          <button className={styles.add_btn}>Add</button>
         </Link>
       </div>
       {contacts.map((contact) => {

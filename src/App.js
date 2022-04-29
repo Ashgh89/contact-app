@@ -67,6 +67,8 @@ function App() {
     <main className="App">
       <h1>Contact App </h1>
       <Routes>
+        <Route path="/edit/:id" element={<ContactDetail />} />
+
         <Route path="/user/:id" element={<ContactDetail />} />
         <Route
           path="/add"
