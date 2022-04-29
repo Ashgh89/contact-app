@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import addOneContact from "../../services/addContactService";
 import styles from "./addContact.module.css";
-const AddContact = ({ addContactHandler }) => {
+const AddContact = () => {
   const [contact, setContact] = useState({ name: "", email: "" });
   const navigate = useNavigate();
   const changeHandler = (e) => {
@@ -10,18 +11,23 @@ const AddContact = ({ addContactHandler }) => {
     // just one changeHandler for multiple inputs
     setContact({ ...contact, [e.target.name]: e.target.value });
   };
-  const submitForm = (e) => {
+
+  const submitForm = async (e) => {
     if (!contact.name || !contact.email) {
       alert("Please Enter name or email");
       return;
     }
     e.preventDefault();
-    addContactHandler(contact);
-    setContact({ name: "", email: "" });
-
-    // push to homepage
-    navigate("/");
+    try {
+      await addOneContact(contact);
+      setContact({ name: "", email: "" });
+      // push to homepage
+      navigate("/");
+    } catch (error) {
+      console.log("that's error");
+    }
   };
+
   return (
     <form onSubmit={submitForm}>
       <div className={styles.formControl}>
