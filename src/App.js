@@ -5,6 +5,7 @@ import "./App.css";
 import AddContact from "./component/AddContact/AddContact";
 import ContactDetail from "./component/ContactDetail/ContactDetail";
 import ContactList from "./component/ContactList/ContactList";
+import EditContact from "./component/EditContact/EditContact";
 import addOneContact from "./services/addContactService";
 import deleteOneContact from "./services/deleteContactService";
 import getContacts from "./services/getContactsService";
@@ -67,7 +68,7 @@ function App() {
     <main className="App">
       <h1>Contact App </h1>
       <Routes>
-        <Route path="/edit/:id" element={<ContactDetail />} />
+        <Route path="/edit/:id" element={<EditContact />} />
 
         <Route path="/user/:id" element={<ContactDetail />} />
         <Route
