@@ -8,6 +8,7 @@ import deleteOneContact from "../../services/deleteContactService";
 
 const ContactList = () => {
   const [contacts, setContacts] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
 
   // So When we are in HOMEPAGE route => ContactList is gonna render
   useEffect(() => {
@@ -31,6 +32,19 @@ const ContactList = () => {
     // console.log("clicked", id);
   };
 
+  const searchHandler = (e) => {
+    setSearchTerm(e.target.value);
+    const search = e.target.value;
+    // filter contacts:
+    const filteredContacts = contacts.filter((c) => {
+      return Object.values(c)
+        .join("")
+        .toLowerCase()
+        .includes(search.toLowerCase());
+    });
+    setContacts(filteredContacts);
+  };
+
   return (
     <section className={styles.contactList}>
       <div>
@@ -38,6 +52,9 @@ const ContactList = () => {
         <Link to="/add">
           <button className={styles.add_btn}>Add</button>
         </Link>
+      </div>
+      <div>
+        <input type="text" value={searchTerm} onChange={searchHandler} />
       </div>
       {contacts ? (
         contacts.map((contact) => {

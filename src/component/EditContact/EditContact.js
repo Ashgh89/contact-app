@@ -22,7 +22,7 @@ const EditContact = () => {
       // id => params
       // put id and data to backend => update
       await updateContact(id, contact);
-      setContact({ name: "", email: "" });
+      // setContact({ name: "", email: "" });
       // push to homepage
       navigate("/");
       // setContacts(data);

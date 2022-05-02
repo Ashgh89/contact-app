@@ -20,7 +20,7 @@ const AddContact = () => {
     e.preventDefault();
     try {
       await addOneContact(contact);
-      setContact({ name: "", email: "" });
+      // setContact({ name: "", email: "" });
       // push to homepage
       navigate("/");
     } catch (error) {
