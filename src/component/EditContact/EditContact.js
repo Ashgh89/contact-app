@@ -3,25 +3,30 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import getOneContact from "../../services/getOneContact";
 import styles from "../AddContact/addContact.module.css";
-const EditContact = ({ editContactHandler }) => {
+import updateContact from "../../services/updateContact";
+const EditContact = () => {
   const [contact, setContact] = useState({ name: "", email: "" });
   const navigate = useNavigate();
   const { id } = useParams();
   const changeHandler = (e) => {
     setContact({ ...contact, [e.target.name]: e.target.value });
   };
-  const submitForm = (e) => {
+
+  const submitForm = async (e) => {
     if (!contact.name || !contact.email) {
       alert("Please Enter name or email");
       return;
     }
     e.preventDefault();
-    // id => params
-    editContactHandler(contact, id);
-    setContact({ name: "", email: "" });
-
-    // push to homepage
-    navigate("/");
+    try {
+      // id => params
+      // put id and data to backend => update
+      await updateContact(id, contact);
+      setContact({ name: "", email: "" });
+      // push to homepage
+      navigate("/");
+      // setContacts(data);
+    } catch (error) {}
   };
 
   useEffect(() => {

@@ -35,15 +35,15 @@ function App() {
   //   // setContacts([...contacts, newAdded]);
   // };
 
-  const editContactHandler = async (contact, id) => {
-    try {
-      // put id and data to backend => update
-      await updateContact(id, contact);
-      // get id and data from backend
-      const { data } = await getContacts();
-      setContacts(data);
-    } catch (error) {}
-  };
+  // const editContactHandler = async (contact, id) => {
+  //   try {
+  //     // put id and data to backend => update
+  //     await updateContact(id, contact);
+  //     // get id and data from backend
+  //     const { data } = await getContacts();
+  //     setContacts(data);
+  //   } catch (error) {}
+  // };
   // const deleteContactHandler = async (id) => {
   //   try {
   //     await deleteOneContact(id);
@@ -69,11 +69,7 @@ function App() {
     <main className="App">
       <h1>Contact App </h1>
       <Routes>
-        <Route
-          path="/edit/:id"
-          element={<EditContact editContactHandler={editContactHandler} />}
-        />
-
+        <Route path="/edit/:id" element={<EditContact />} />
         <Route path="/user/:id" element={<ContactDetail />} />
         <Route path="/add" element={<AddContact />} />
         <Route path="/" element={<ContactList />} />
