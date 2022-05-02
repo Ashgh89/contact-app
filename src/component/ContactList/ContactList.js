@@ -8,6 +8,8 @@ import deleteOneContact from "../../services/deleteContactService";
 
 const ContactList = () => {
   const [contacts, setContacts] = useState(null);
+  const [allContacts, setAllContacts] = useState(null);
+
   const [searchTerm, setSearchTerm] = useState("");
 
   // So When we are in HOMEPAGE route => ContactList is gonna render
@@ -15,6 +17,7 @@ const ContactList = () => {
     const fetchContact = async () => {
       const { data } = await getContacts();
       setContacts(data);
+      setAllContacts(data);
     };
     try {
       fetchContact();
@@ -35,14 +38,18 @@ const ContactList = () => {
   const searchHandler = (e) => {
     setSearchTerm(e.target.value);
     const search = e.target.value;
-    // filter contacts:
-    const filteredContacts = contacts.filter((c) => {
-      return Object.values(c)
-        .join("")
-        .toLowerCase()
-        .includes(search.toLowerCase());
-    });
-    setContacts(filteredContacts);
+    if (search !== "") {
+      // filter contacts:
+      const filteredContacts = allContacts.filter((c) => {
+        return Object.values(c)
+          .join("")
+          .toLowerCase()
+          .includes(search.toLowerCase());
+      });
+      setContacts(filteredContacts);
+    } else {
+      setContacts(allContacts);
+    }
   };
 
   return (
